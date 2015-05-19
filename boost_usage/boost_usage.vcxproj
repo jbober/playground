@@ -13,6 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7C4DE17B-0B88-4B1A-B289-61E239881495}</ProjectGuid>
     <RootNamespace>boost_usage</RootNamespace>
+    <ProjectName>bimap</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
