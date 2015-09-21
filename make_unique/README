@@ -1,0 +1,3 @@
+run cmake with
+-DCMAKE_BUILD_TYPE=Debug
+-DCMAKE_BUILD_TYPE=Release
