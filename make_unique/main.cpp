@@ -11,7 +11,7 @@ public:
 };
 class repository
 {
-private:
+protected:
     unique_ptr<testing> t_;
 public:
 
@@ -19,19 +19,24 @@ public:
     {
 
     }
+    void virtual mockthis()
+    {
+        //some very ugly static call
+    }
 };
 
-void sink(unique_ptr<testing> t)
+// under tests:
+class repositoryTest : public repository
 {
-
-}
+public:
+    repositoryTest(unique_ptr<testing> t) : repository(move(t)) {}
+    void mockThis();
+};
 
 int main()
 {
-    repository r(unique_ptr<testing>(new testing));
-//    repository(unique_ptr<testing> (new testing)) t;
-    unique_ptr<testing> t(new testing);
-    sink(unique_ptr<testing>{new testing});
+    repositoryTest r(unique_ptr<testing>(new testing));
+
     return 0;
 }
 
