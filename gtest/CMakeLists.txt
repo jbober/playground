@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.8.2)
-
+#find_package(Boost)
+find_package(Boost 1.55.0 COMPONENTS filesystem system)
 
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in
@@ -28,5 +29,9 @@ endif()
 
 add_executable(example_test test.cpp)
 target_link_libraries(example_test gtest gtest_main gmock gmock_main)
+add_executable(boost_filesystem_test boost_filesystem.cpp)
+#add_executable(boost_filesystem boost_filesystem.cpp)
+  target_link_libraries(boost_filesystem_test gtest gtest_main gmock gmock_main ${Boost_LIBRARIES})
+#target_link_libraries(boost_filesystem boost_filesystem_test gtest gtest_main gmock gmock_main)
 # Now simply link your own targets against gtest, gmock,
 # etc. as appropriate
