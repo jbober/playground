@@ -1,0 +1,6 @@
+//SimpleHelloWorld.idl
+module SimpleHelloWorld{
+interface GoodDay{
+string hello();
+};
+};

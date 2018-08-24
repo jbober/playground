@@ -6,7 +6,7 @@ gen = generator(idlc,
                 output  : ['@BASENAME@C.h', '@BASENAME@C.cpp'],
                 arguments : ['@INPUT@', '-o', '@BUILD_DIR@'])
 
-gen_src = gen.process('time.idl')
+gen_src = gen.process('time.idl', 'hello_world.idl')
 
 thread_dep = dependency('threads')
 cc = meson.get_compiler('cpp')
