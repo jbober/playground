@@ -1,0 +1,4 @@
+cd build
+run 
+conan install ..
+conan build ..
