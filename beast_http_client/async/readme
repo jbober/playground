@@ -1,4 +1,9 @@
+conan remote add conan-mpusz https://api.bintray.com/conan/mpusz/conan-mpusz
+conan install google-benchmark/1.4.1@mpusz/stable --build=missing
+
 mkdir build
 cd build
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PWD
 conan install .. --build missing 
 conan build ..
+

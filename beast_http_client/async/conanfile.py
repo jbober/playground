@@ -9,7 +9,7 @@ class HelloConan(ConanFile):
     generators = "pkg_config"
 
     exports_sources = "./*"
-    requires = (("boost/1.68.0@conan/stable"))
+    requires = (("boost/1.68.0@conan/stable"),("google-benchmark/1.4.1@mpusz/stable"))
     default_options = {"boost:shared": False}
 
     def build(self):
