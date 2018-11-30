@@ -8,13 +8,16 @@
 #include "fibonacci.h"
 #include <string>
 
+#include <stlab/concurrency/channel.hpp>
+
 using namespace boost::multiprecision;
+using namespace std;
 
 static void std_async(benchmark::State& state) {
   for (auto _ : state)
   {
 
-  std::future<cpp_int> x = std::async([]{ return fibonacci<cpp_int>(1'000'000); });
+  future<cpp_int> x = std::async([]{ return fibonacci<cpp_int>(1'000'000); });
   }
 }
 BENCHMARK(std_async);
