@@ -10,13 +10,14 @@ class HelloConan(ConanFile):
     exports_sources = "./*"
     requires = (("boost/1.68.0@conan/stable"),("google-benchmark/1.4.1@mpusz/stable"))
     default_options = {"boost:shared": False}
-    scm = {
-        "type": "git",
-        "url": "https://github.com/stlab/libraries.git",
-        "revision": "master",
-    }
-
-
+#    scm = {
+#        "type": "git",
+#        "url": "https://github.com/stlab/libraries.git",
+#        "revision": "master",
+#    }
+    def source(self):
+        self.run("git clone --dept 1 https://github.com/stlab/libraries.git")
+        self.run("git clone --dept 1 https://github.com/ReactiveX/RxCpp.git")
 
     def build(self):
         meson = Meson(self)

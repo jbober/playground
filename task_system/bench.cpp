@@ -13,14 +13,15 @@
 #include <stlab/concurrency/default_executor.hpp>
 
 using namespace boost::multiprecision;
-using namespace std;
+using namespace stlab;
+using std::cout;
+using std::endl;
 
 static void std_async(benchmark::State& state) {
   for (auto _ : state)
   {
 
-  future<cpp_int> x = std::async([]{ return fibonacci<cpp_int>(1'000'000); });
-  //future<cpp_int> y = std::async([]{ return fibonacci<cpp_int>(1'000'000); });
+  auto x = std::async([]{ return fibonacci<cpp_int>(1'000'000); });
   }
 }
 BENCHMARK(std_async);
@@ -29,8 +30,9 @@ static void stlab_async(benchmark::State& state) {
   for (auto _ : state)
   {
 
-  stlab::future<cpp_int> x = stlab::async(stlab::default_executor, []{ return fibonacci<cpp_int>(1'000'000); });
-  //stlab::future<void> y = x.then([](stlab::future<cpp_int> x){ std::cout << x.get() << std::endl; });
+  auto x = stlab::async(default_executor, []{ return fibonacci<cpp_int>(1'000'000); });
+  future<void> y = x.then([](cpp_int x){ cout << x << endl; });
+  y.get_try();
   }
 }
 BENCHMARK(stlab_async);
