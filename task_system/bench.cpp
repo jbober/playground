@@ -11,6 +11,8 @@
 #include <stlab/concurrency/channel.hpp>
 #include <stlab/concurrency/future.hpp>
 #include <stlab/concurrency/default_executor.hpp>
+#include <stlab/concurrency/utility.hpp>
+
 
 using namespace boost::multiprecision;
 using namespace stlab;
@@ -32,7 +34,7 @@ static void stlab_async(benchmark::State& state) {
 
   auto x = stlab::async(default_executor, []{ return fibonacci<cpp_int>(1'000'000); });
   future<void> y = x.then([](cpp_int x){ cout << x << endl; });
-  y.get_try();
+  stlab::blocking_get(y);
   }
 }
 BENCHMARK(stlab_async);
